@@ -1,0 +1,297 @@
+{
+    "label": "BACHELOR OF SCIENCE WITH A MAJOR IN COMPUTER SCIENCE  - COLLEGE OF ENGINEERING",
+    "categories": [{
+        "name": "Critical Tracking Courses",
+        "courses": [{
+            "name": "General Chemistry or CHM2095 ",
+            "code": "CHM2045",
+            "credits": "3.00",
+            "group": 503572
+        }, {
+            "name": "Analyt Geom and Calc 1",
+            "code": "MAC2311",
+            "credits": "3.00",
+            "group": 503572
+        }, {
+            "name": "Analyt Geom and Calc 2",
+            "code": "MAC2312",
+            "credits": "3.00",
+            "group": 503572
+        }, {
+            "name": "Analyt Geom and Calc 3",
+            "code": "MAC2313",
+            "credits": "3.00",
+            "group": 503572
+        }, {
+            "name": "Programming Fundamentals 1",
+            "code": "COP3502",
+            "credits": "3.00",
+            "group": 503572
+        }, {
+            "name": "Physics with Calculus 1",
+            "code": "PHY2048",
+            "credits": "3.00",
+            "group": 503572
+        }, {
+            "name": "Physics with Calculus 2",
+            "code": "PHY2049",
+            "credits": "3.00",
+            "group": 503572
+        }]
+    }, {
+        "name": "Computer Science - Core",
+        "courses": [{
+            "name": "Programming Fundamentals 2",
+            "code": "COP3503",
+            "credits": "3.00",
+            "group": 503571
+        }, {
+            "name": "Introduction to Computer Organization",
+            "code": "CDA 310",
+            "credits": "3.00",
+            "group": 503571
+        }, {
+            "name": "Applications of Discrete Structures",
+            "code": "COT3100",
+            "credits": "3.00",
+            "group": 503571
+        }, {
+            "name": "Data Structures and Algorithm",
+            "code": "COP3530",
+            "credits": "4.00",
+            "group": 503571
+        }, {
+            "name": "Numerical Analysis",
+            "code": "COT4501",
+            "credits": "3.00",
+            "group": 503571
+        }, {
+            "name": "Digital Logic and Computer Systems",
+            "code": "EEL3701",
+            "credits": "4.00",
+            "group": 503571
+        }, {
+            "name": "Information and Database Systems 1",
+            "code": "CIS4301",
+            "credits": "3.00",
+            "group": 503571
+        }, {
+            "name": "Operating Systems",
+            "code": "COP4600",
+            "credits": "3.00",
+            "group": 503571
+        }, {
+            "name": "Introduction to Software Engineering",
+            "code": "CEN3031",
+            "credits": "3.00",
+            "group": 503571
+        }, {
+            "name": "Computer Network Fundamentals",
+            "code": "CNT4007",
+            "credits": "4.00",
+            "group": 503571
+        }, {
+            "name": "Senior Project or CIS4913C ",
+            "code": "CIS4914",
+            "credits": "3.00",
+            "group": 503571
+        }]
+    }, {
+        "name": "Pre-professional Labs",
+        "courses": [{
+            "name": "General Chemistry 1 Lab",
+            "code": "CHM2045",
+            "credits": "1.00",
+            "group": 503571
+        }, {
+            "name": "Physics 1 Lab",
+            "code": "PHY2048",
+            "credits": "1.00",
+            "group": 503571
+        }, {
+            "name": "Physics 2 Lab",
+            "code": "PHY2049",
+            "credits": "1.00",
+            "group": 503571
+        }]
+    }, {
+        "name": "Summary of Major Coursework",
+        "courses": [{
+            "name": "Tech Writing",
+            "code": "ENC3246",
+            "credits": "3.00",
+            "group": 503571
+        }, {
+            "name": "Linear Algebra",
+            "code": "MAS3114",
+            "credits": "3.00",
+            "group": 503571
+        }, {
+            "name": "Engineering Statistics",
+            "code": "STA3032",
+            "credits": "3.00",
+            "group": 503571
+        }, {
+            "name": "Professional Ethics",
+            "code": "EGS4034",
+            "credits": "1.00",
+            "group": 503571
+        }]
+    }, {
+        "name": "Computer Science - Communications (3 Credits)",
+        "courses": [{
+            "name": "Approved Writing or Public Speaking Courses.  – (3 Credits)",
+            "code": "Elective(s)",
+            "credits": "3.00",
+            "group": 503571
+        }]
+    }, {
+        "name": "Computer Science - Interdisciplnary Electives (14 Credits)",
+        "courses": [{
+            "name": "Option A:  3000 Level or Above",
+            "code": "Elective(s)",
+            "credits": "14.00",
+            "group": 503571
+        }, {
+            "name": "Option B: Minor",
+            "code": "Elective(s)",
+            "credits": "14.00",
+            "group": 503571
+        }]
+    }, {
+        "name": "Computer Science - Technical Electives (15 Credits)",
+        "courses": [{
+            "name": "Technical Electives and Co-Op/Internship Courses",
+            "code": "Elective(s)",
+            "credits": "15.00",
+            "group": 503571
+        }]
+    }, {
+        "name": "University Required Course",
+        "courses": [{
+            "name": "What is the Good Life",
+            "code": "IUF1000",
+            "credits": "0.00",
+            "group": 502147
+        }]
+    }, {
+        "name": "State General Education Requirement",
+        "courses": [{
+            "name": "Composition",
+            "code": "Elective(s)",
+            "credits": "3.00",
+            "group": 502147
+        }, {
+            "name": "Humanities",
+            "code": "Elective(s)",
+            "credits": "3.00",
+            "group": 502147
+        }, {
+            "name": "Social and Behavioral Science",
+            "code": "Elective(s)",
+            "credits": "3.00",
+            "group": 502147
+        }, {
+            "name": "Mathematics",
+            "code": "Elective(s)",
+            "credits": "3.00",
+            "group": 502147
+        }, {
+            "name": "Biological and Physical Sciences",
+            "code": "Elective(s)",
+            "credits": "3.00",
+            "group": 502147
+        }]
+    }, {
+        "name": "Composition (6 Credits)",
+        "courses": [{
+            "name": "Composition",
+            "code": "Elective(s)",
+            "credits": "6.00",
+            "group": 503650
+        }]
+    }, {
+        "name": "Humanities (6 Credits)",
+        "courses": [{
+            "name": "Humanities Courses",
+            "code": "Elective(s)",
+            "credits": "6.00",
+            "group": 503650
+        }]
+    }, {
+        "name": "Social & Behavioral Science Courses (6 Credits)",
+        "courses": [{
+            "name": "Social Science Courses",
+            "code": "Elective(s)",
+            "credits": "6.00",
+            "group": 503650
+        }]
+    }, {
+        "name": "Mathematics (6 Credits)",
+        "courses": [{
+            "name": "Analytical Geometry ",
+            "code": "MAC2311",
+            "credits": "3.00",
+            "group": 503650
+        }, {
+            "name": "Calculus 2",
+            "code": "MAC2312",
+            "credits": "3.00",
+            "group": 503650
+        }]
+    }, {
+        "name": "Physical/Biological Sciences (12 Credits)",
+        "courses": [{
+            "name": "General Chemistry 1",
+            "code": "CHM2045",
+            "credits": "3.00",
+            "group": 503650
+        }, {
+            "name": "CHM2045l - General Chemistry 1 Laboratory",
+            "code": "Elective(s)",
+            "credits": "1.00",
+            "group": 503650
+        }, {
+            "name": "Physics with Calculus 1",
+            "code": "PHY2048",
+            "credits": "3.00",
+            "group": 503650
+        }, {
+            "name": "Physics with Calculus 1 Lab",
+            "code": "PHY2048",
+            "credits": "1.00",
+            "group": 503650
+        }, {
+            "name": "Physics with Calculus 2",
+            "code": "PHY2049",
+            "credits": "3.00",
+            "group": 503650
+        }, {
+            "name": "Physics with Calculus 2 Lab",
+            "code": "PHY2049",
+            "credits": "1.00",
+            "group": 503650
+        }]
+    }, {
+        "name": "International/Diversity Requirement",
+        "courses": [{
+            "name": "International Focus - 3 Credits",
+            "code": "Elective(s)",
+            "credits": "3.00",
+            "group": 502146
+        }, {
+            "name": "Diversity Focus - 3 Credits",
+            "code": "Elective(s)",
+            "credits": "3.00",
+            "group": 502146
+        }]
+    }, {
+        "name": "Summer Enrollment",
+        "courses": [{
+            "name": "OPTION 1: UF Summer Courses (9 Credits)",
+            "code": "Elective(s)",
+            "credits": "9.00",
+            "group": 502149
+        }]
+    }]
+}

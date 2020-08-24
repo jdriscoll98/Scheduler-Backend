@@ -1,19 +1,10 @@
 from rest_framework import serializers
-from .models import Program, TYPES
+from .models import Semester
 from django.contrib.auth.models import User
 
 
-class ProgramSerializer(serializers.ModelSerializer):
-    user = serializers.ReadOnlyField(source="user.username")
-
+class SemesterSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Program
-        fields = ["id", "college", "type", "subject", "user"]
+        models = Semester
+        fields = ["id", "number", "term", "courses"]
 
-
-class UserSerializer(serializers.ModelSerializer):
-    programs = serializers.PrimaryKeyRelatedField(many=True, queryset=Program.objects.all())  # reverse relationship
-
-    class Meta:
-        model = User
-        fields = ["id", "username", "snippets"]

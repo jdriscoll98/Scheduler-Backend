@@ -1,0 +1,6 @@
+loop through planGroups:
+    skip first group (student group info)
+    group['title']
+    enter group['requirements']
+        loop through requirements['subrequirements']
+            title, unitsrequired, met
