@@ -2,7 +2,11 @@ from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import FetchCoursesSerializer
+from rest_framework import permissions
+from rest_framework.generics import CreateAPIView
+from django.contrib.auth.models import User
+from .serializers import FetchCoursesSerializer, UserSerializer
+from .utils import parse_audit
 import requests
 import json
 
@@ -20,7 +24,6 @@ class FetchCourses(APIView):
             if course_title:
                 course_title.replace(" ", "+")
             url = f"https://one.uf.edu/apix/soc/schedule/?category=CWSP&class-num={class_number}&course-code={course_number}&course-title={course_title}&cred-srch=&credits=&day-f=&day-m=&day-r=&day-s=&day-t=&day-w=&days=false&dept={department}&eep=&fitsSchedule=false&ge=&ge-b=&ge-c=&ge-d=&ge-h=&ge-m=&ge-n=&ge-p=&ge-s=&hons=false&instructor=&last-control-number=0&level-max=--&level-min=--&no-open-seats=false&online-a=&online-c=&online-h=&online-p=&period-b=&period-e=&prog-level={level}&term=2208&wr-2000=&wr-4000=&wr-6000=&writing="
-            print(url)
             response = requests.get(url)
             courses = json.loads(response.content)[0]["COURSES"]
             response_data = {}
@@ -35,3 +38,17 @@ class FetchCourses(APIView):
                 response_data["parsed_courses"].append(parsed_course)
             return Response(data=response_data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CreateUserView(CreateAPIView):
+    model = User
+    permission_classes = [permissions.AllowAny]
+    serializer_class = UserSerializer
+
+
+class ProcessAuditView(APIView):
+    def post(self, request, format=None):
+        data = json.loads(request.data)
+        parsed_audit = parse_audit(data, request.user)
+        return Response(status.HTTP_200_OK)
+
