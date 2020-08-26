@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 
-from .models import Profile
 
 # serializer to take in search filters
 class FetchCoursesSerializer(serializers.Serializer):
@@ -19,18 +19,9 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.create(username=validated_data["username"])
         user.set_password(validated_data["password"])
         user.save()
-        profile = Profile.objects.create(user=user)
         return user
 
     class Meta:
         model = User
         fields = ("id", "username", "password")
 
-
-class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField(max_length=200)
-    password = serializers.CharField(max_length=200)
-
-
-class LogoutSerializer(serializers.Serializer):
-    token = serializers.UUIDField()

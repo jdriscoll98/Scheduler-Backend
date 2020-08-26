@@ -4,11 +4,12 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import permissions
 from rest_framework.generics import CreateAPIView
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.models import Token
+from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
-from .permissions import IsLoggedIn
-from .serializers import FetchCoursesSerializer, UserSerializer, LoginSerializer, LogoutSerializer
+from .serializers import FetchCoursesSerializer, UserSerializer
 from .utils import parse_audit
-from .models import Profile
 import requests
 import json
 from django.contrib.auth import authenticate, login, logout
@@ -16,7 +17,7 @@ from django.contrib.auth import authenticate, login, logout
 
 class FetchCourses(APIView):
     serializer_class = FetchCoursesSerializer
-    permission_classes = [IsLoggedIn]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request, format=None):
         serializer = FetchCoursesSerializer(data=request.data)
@@ -48,46 +49,21 @@ class FetchCourses(APIView):
 
 class CreateUserView(CreateAPIView):
     model = User
-    permission_classes = [permissions.AllowAny]
     serializer_class = UserSerializer
 
 
 class ProcessAuditView(APIView):
-    permission_classes = [IsLoggedIn]
-
     def post(self, request, format=None):
         data = json.loads(request.data)
-        parsed_audit = parse_audit(data)
+        parsed_audit = parse_audit(data, request.user)
         return Response(status.HTTP_200_OK)
 
 
-class Login(APIView):
-    serializer_class = LoginSerializer
+class Authenticate(ObtainAuthToken):
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data, context={"request": request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data["user"]
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({"token": token.key, "username": user.username})
 
-    def post(self, request, format=None):
-        serializer = LoginSerializer(data=request.data)
-        if serializer.is_valid():
-            data = serializer.validated_data
-            user = authenticate(username=data["username"], password=data["password"])
-            if user:
-                login(request, user)
-                profile = Profile.objects.get(user=user)
-                profile_data = {"username": user.username, "token": str(profile.token)}
-                return Response(data=profile_data, status=status.HTTP_200_OK)
-            else:
-                data = {"error": "Username / Password Incorrect"}
-        else:
-            data = serializer.errors
-        return Response(data=data, status=status.HTTP_400_BAD_REQUEST)
-
-
-class Logout(APIView):
-    serializer_class = LogoutSerializer
-
-    def post(self, request, format=None):
-        serializer = LogoutSerializer(data=request.data)
-        if serializer.is_valid():
-            data = serializer.validated_data
-            profile = Profile.objects.get(token=data["token"])
-            logout(profile.user)
-            return Response(status=status.HTTP_200_OK)
