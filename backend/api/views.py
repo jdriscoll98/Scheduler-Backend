@@ -53,6 +53,8 @@ class CreateUserView(CreateAPIView):
 
 
 class ProcessAuditView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request, format=None):
         data = json.loads(request.data)
         parsed_audit = parse_audit(data, request.user)
