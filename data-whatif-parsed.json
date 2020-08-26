@@ -1,0 +1,526 @@
+{
+    "label": "BACHELOR OF SCIENCE IN ACCOUNTING",
+    "categories": [{
+        "name": "Accounting Critical Tracking Courses",
+        "courses": [{
+            "name": "ECO2013 ",
+            "code": "ECO2013",
+            "credits_required": "3.00",
+            "credits_towards": "4.00",
+            "passed": true,
+            "inProgress": false,
+            "group": 500003
+        }, {
+            "name": "ECO2023 ",
+            "code": "ECO2023",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500003
+        }, {
+            "name": "MAC2233 ",
+            "code": "MAC2233",
+            "credits_required": "3.00",
+            "credits_towards": "4.00",
+            "passed": true,
+            "inProgress": false,
+            "group": 500003
+        }, {
+            "name": "MAC2234 ",
+            "code": "MAC2234",
+            "credits_required": "3.00",
+            "credits_towards": "4.00",
+            "passed": true,
+            "inProgress": false,
+            "group": 500003
+        }, {
+            "name": "CGS2531 ",
+            "code": "CGS2531",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500003
+        }, {
+            "name": "STA2023 ",
+            "code": "STA2023",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "passed": true,
+            "inProgress": false,
+            "group": 500003
+        }, {
+            "name": "ACG2021 ",
+            "code": "ACG2021",
+            "credits_required": "3.00",
+            "credits_towards": "4.00",
+            "passed": true,
+            "inProgress": true,
+            "group": 500003
+        }, {
+            "name": "ACG2071 ",
+            "code": "ACG2071",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500003
+        }, {
+            "name": "ACG3401 ",
+            "code": "ACG3401",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500003
+        }],
+        "completed": 5,
+        "percent_complete": 55.55555555555556
+    }, {
+        "name": "Upper Division Critical Tracking Courses",
+        "courses": [{
+            "name": "ACG3101 ",
+            "code": "ACG3101",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500003
+        }, {
+            "name": "FIN3403 ",
+            "code": "FIN3403",
+            "credits_required": "6.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500003
+        }, {
+            "name": "Complete All 5 of the Following",
+            "code": "Elective(s)",
+            "credits_required": "15.00",
+            "credits_towards": "0.00",
+            "group": 500003,
+            "passed": false
+        }, {
+            "name": "ACG4111 ",
+            "code": "ACG4111",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500003
+        }, {
+            "name": "ACG4341 ",
+            "code": "ACG4341",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500003
+        }],
+        "completed": 0,
+        "percent_complete": 0.0
+    }, {
+        "name": "Professional Communication Requirement",
+        "courses": [{
+            "name": "Professional Speaking",
+            "code": "Elective(s)",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "group": 501330,
+            "passed": false
+        }, {
+            "name": "Professional Business Writing",
+            "code": "Elective(s)",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "group": 501330,
+            "passed": false
+        }],
+        "completed": 0,
+        "percent_complete": 0.0
+    }, {
+        "name": "Complete a Minimum of 60 Credits at the 3000 Level or Above",
+        "courses": [{
+            "name": "Courses",
+            "code": "Elective(s)",
+            "credits_required": "60.00",
+            "credits_towards": "55.00",
+            "group": 501330,
+            "passed": false
+        }],
+        "completed": 0,
+        "percent_complete": 91.66666666666666
+    }, {
+        "name": "Accounting Major Courses",
+        "courses": [{
+            "name": "ACG3101 ",
+            "code": "ACG3101",
+            "credits_required": "4.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500015
+        }, {
+            "name": "ACG3401 ",
+            "code": "ACG3401",
+            "credits_required": "4.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500015
+        }, {
+            "name": "ACG4111 ",
+            "code": "ACG4111",
+            "credits_required": "4.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500015
+        }, {
+            "name": "ACG4341 ",
+            "code": "ACG4341",
+            "credits_required": "4.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500015
+        }, {
+            "name": "AUDITING OPTION 1: ACG4632 - Intro to Auditing",
+            "code": "Elective(s)",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "group": 500015,
+            "passed": false
+        }, {
+            "name": "AUDITING OPTION 2: ACG5637 and ACG5647",
+            "code": "Elective(s)",
+            "credits_required": "4.00",
+            "credits_towards": "0.00",
+            "group": 500015,
+            "passed": false
+        }, {
+            "name": "TAX OPTION 1: TAX4001 - Intro to Federal Income Tax",
+            "code": "Elective(s)",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "group": 500015,
+            "passed": false
+        }, {
+            "name": "TAX OPTION 2: TAX5025 and TAX5027",
+            "code": "Elective(s)",
+            "credits_required": "4.00",
+            "credits_towards": "0.00",
+            "group": 500015,
+            "passed": false
+        }],
+        "completed": 0,
+        "percent_complete": 0.0
+    }, {
+        "name": "Required Core Coursework",
+        "courses": [{
+            "name": "BUL4310 ",
+            "code": "BUL4310",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500015
+        }, {
+            "name": "GEB3373 ",
+            "code": "GEB3373",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500015
+        }, {
+            "name": "FIN3403 ",
+            "code": "FIN3403",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500015
+        }, {
+            "name": "MAN3025 ",
+            "code": "MAN3025",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500015
+        }, {
+            "name": "MAR3023 ",
+            "code": "MAR3023",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500015
+        }, {
+            "name": "QMB3250 ",
+            "code": "QMB3250",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500015
+        }, {
+            "name": "MAN4504 ",
+            "code": "MAN4504",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500015
+        }],
+        "completed": 0,
+        "percent_complete": 0.0
+    }, {
+        "name": "Outside Credit Requirement",
+        "courses": [{
+            "name": "All Courses Non-Business and Non-Accounting Courses",
+            "code": "Elective(s)",
+            "credits_required": "60.00",
+            "credits_towards": "63.00",
+            "group": 500015,
+            "passed": true
+        }],
+        "completed": 0,
+        "percent_complete": 100
+    }, {
+        "name": "University Required Course",
+        "courses": [{
+            "name": "IDS1161 ",
+            "code": "IDS1161",
+            "credits_required": "0.00",
+            "credits_towards": "2.00",
+            "passed": true,
+            "inProgress": false,
+            "group": 500018
+        }],
+        "completed": 1,
+        "percent_complete": 100.0
+    }, {
+        "name": "State General Education Requirement",
+        "courses": [{
+            "name": "Composition",
+            "code": "Elective(s)",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "group": 500018,
+            "passed": true
+        }, {
+            "name": "Humanities",
+            "code": "Elective(s)",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "group": 500018,
+            "passed": true
+        }, {
+            "name": "Social and Behavioral Science",
+            "code": "Elective(s)",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "group": 500018,
+            "passed": true
+        }, {
+            "name": "Mathematics",
+            "code": "Elective(s)",
+            "credits_required": "3.00",
+            "credits_towards": "4.00",
+            "group": 500018,
+            "passed": true
+        }, {
+            "name": "Biological and Physical Sciences",
+            "code": "Elective(s)",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "group": 500018,
+            "passed": true
+        }],
+        "completed": 0,
+        "percent_complete": 100.0
+    }, {
+        "name": "Composition (6 Credits)",
+        "courses": [{
+            "name": "Composition",
+            "code": "Elective(s)",
+            "credits_required": "6.00",
+            "credits_towards": "6.00",
+            "group": 500019,
+            "passed": true
+        }],
+        "completed": 0,
+        "percent_complete": 100.0
+    }, {
+        "name": "Humanities (6 Credits)",
+        "courses": [{
+            "name": "Humanities Courses",
+            "code": "Elective(s)",
+            "credits_required": "6.00",
+            "credits_towards": "6.00",
+            "group": 500019,
+            "passed": true
+        }],
+        "completed": 0,
+        "percent_complete": 100.0
+    }, {
+        "name": "Social & Behavioral Science Courses (6 Credits)",
+        "courses": [{
+            "name": "Social Science Courses",
+            "code": "Elective(s)",
+            "credits_required": "6.00",
+            "credits_towards": "6.00",
+            "group": 500019,
+            "passed": true
+        }],
+        "completed": 0,
+        "percent_complete": 100.0
+    }, {
+        "name": "Mathematics (6 Credits)",
+        "courses": [{
+            "name": "General Education Course with Math Course Prefix",
+            "code": "Elective(s)",
+            "credits_required": "3.00",
+            "credits_towards": "4.00",
+            "group": 500019,
+            "passed": true
+        }, {
+            "name": "Additional General Education Math Course",
+            "code": "Elective(s)",
+            "credits_required": "3.00",
+            "credits_towards": "4.00",
+            "group": 500019,
+            "passed": true
+        }],
+        "completed": 0,
+        "percent_complete": 100
+    }, {
+        "name": "Physical/Biological Sciences (6 Credits)",
+        "courses": [{
+            "name": "Physical/Biological Science Courses (6 Credits)",
+            "code": "Elective(s)",
+            "credits_required": "6.00",
+            "credits_towards": "6.00",
+            "group": 500019,
+            "passed": true
+        }],
+        "completed": 0,
+        "percent_complete": 100.0
+    }, {
+        "name": "Additional Humanities, Social Science, Natural Science (6 Credits)",
+        "courses": [{
+            "name": "Additional General Education Courses",
+            "code": "Elective(s)",
+            "credits_required": "6.00",
+            "credits_towards": "8.00",
+            "group": 500019,
+            "passed": true
+        }],
+        "completed": 0,
+        "percent_complete": 100
+    }, {
+        "name": "International/Diversity Requirement",
+        "courses": [{
+            "name": "International Focus - 3 Credits",
+            "code": "Elective(s)",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "group": 500020,
+            "passed": true
+        }, {
+            "name": "Diversity Focus - 3 Credits",
+            "code": "Elective(s)",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "group": 500020,
+            "passed": true
+        }],
+        "completed": 0,
+        "percent_complete": 100.0
+    }, {
+        "name": "Major Specific State Common Prerequisites",
+        "courses": [{
+            "name": "ACG2021 ",
+            "code": "ACG2021",
+            "credits_required": "3.00",
+            "credits_towards": "4.00",
+            "passed": true,
+            "inProgress": true,
+            "group": 500337
+        }, {
+            "name": "ECO2013 ",
+            "code": "ECO2013",
+            "credits_required": "0.00",
+            "credits_towards": "4.00",
+            "passed": true,
+            "inProgress": false,
+            "group": 500337
+        }, {
+            "name": "ECO2023 ",
+            "code": "ECO2023",
+            "credits_required": "0.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500337
+        }, {
+            "name": "MAC2233 ",
+            "code": "MAC2233",
+            "credits_required": "0.00",
+            "credits_towards": "4.00",
+            "passed": true,
+            "inProgress": false,
+            "group": 500337
+        }, {
+            "name": "STA2023 ",
+            "code": "STA2023",
+            "credits_required": "0.00",
+            "credits_towards": "3.00",
+            "passed": true,
+            "inProgress": false,
+            "group": 500337
+        }, {
+            "name": "CGS2531 ",
+            "code": "CGS2531",
+            "credits_required": "0.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500337
+        }, {
+            "name": "ACG2071 ",
+            "code": "ACG2071",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "group": 500337
+        }, {
+            "name": "MAC2234 ",
+            "code": "MAC2234",
+            "credits_required": "3.00",
+            "credits_towards": "4.00",
+            "passed": true,
+            "inProgress": false,
+            "group": 500337
+        }],
+        "completed": 5,
+        "percent_complete": 62.5
+    }, {
+        "name": "Summer Enrollment",
+        "courses": [{
+            "name": "OPTION 1: UF Summer Courses (9 Credits)",
+            "code": "Elective(s)",
+            "credits_required": "9.00",
+            "credits_towards": "48.00",
+            "group": 500013,
+            "passed": true
+        }],
+        "completed": 0,
+        "percent_complete": 100
+    }]
+}

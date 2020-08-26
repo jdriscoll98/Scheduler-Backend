@@ -1,12 +1,14 @@
-from .models import Program, Category, Course
+from .models import Program, Category, Course, Profile
+from django.shortcuts import get_object_or_404
 import re
 
 
-def parse_audit(data, user):
+def parse_audit(data):
+    profile = get_object_or_404(Profile, token=data.token)
     majorGroup = data["careers"][0]["planGroups"][1]
     progress = round(data["careers"][0]["progressValue"] * 100, 2)
     program = Program.objects.create(
-        user=user,
+        user=profile.user,
         label=majorGroup[0]["title"],
         overall_progress=progress,
         met_groups=data["careers"][0]["numberOfMet"] + data["careers"][0]["numberOfInProgress"],

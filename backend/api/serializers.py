@@ -30,3 +30,7 @@ class UserSerializer(serializers.ModelSerializer):
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=200)
     password = serializers.CharField(max_length=200)
+
+
+class LogoutSerializer(serializers.Serializer):
+    token = serializers.UUIDField()

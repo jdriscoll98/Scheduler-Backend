@@ -5,16 +5,18 @@ from rest_framework import status
 from rest_framework import permissions
 from rest_framework.generics import CreateAPIView
 from django.contrib.auth.models import User
-from .serializers import FetchCoursesSerializer, UserSerializer, LoginSerializer
+from .permissions import IsLoggedIn
+from .serializers import FetchCoursesSerializer, UserSerializer, LoginSerializer, LogoutSerializer
 from .utils import parse_audit
 from .models import Profile
 import requests
 import json
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 class FetchCourses(APIView):
     serializer_class = FetchCoursesSerializer
+    permission_classes = [IsLoggedIn]
 
     def post(self, request, format=None):
         serializer = FetchCoursesSerializer(data=request.data)
@@ -51,9 +53,11 @@ class CreateUserView(CreateAPIView):
 
 
 class ProcessAuditView(APIView):
+    permission_classes = [IsLoggedIn]
+
     def post(self, request, format=None):
         data = json.loads(request.data)
-        parsed_audit = parse_audit(data, request.user)
+        parsed_audit = parse_audit(data)
         return Response(status.HTTP_200_OK)
 
 
@@ -61,7 +65,6 @@ class Login(APIView):
     serializer_class = LoginSerializer
 
     def post(self, request, format=None):
-        print(request.data)
         serializer = LoginSerializer(data=request.data)
         if serializer.is_valid():
             data = serializer.validated_data
@@ -70,10 +73,21 @@ class Login(APIView):
                 login(request, user)
                 profile = Profile.objects.get(user=user)
                 profile_data = {"username": user.username, "token": str(profile.token)}
-                return Response(data=json.dumps(profile_data), status=status.HTTP_200_OK)
+                return Response(data=profile_data, status=status.HTTP_200_OK)
             else:
                 data = {"error": "Username / Password Incorrect"}
         else:
             data = serializer.errors
         return Response(data=data, status=status.HTTP_400_BAD_REQUEST)
 
+
+class Logout(APIView):
+    serializer_class = LogoutSerializer
+
+    def post(self, request, format=None):
+        serializer = LogoutSerializer(data=request.data)
+        if serializer.is_valid():
+            data = serializer.validated_data
+            profile = Profile.objects.get(token=data["token"])
+            logout(profile.user)
+            return Response(status=status.HTTP_200_OK)

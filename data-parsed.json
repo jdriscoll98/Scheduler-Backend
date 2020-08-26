@@ -1,297 +1,528 @@
 {
     "label": "BACHELOR OF SCIENCE WITH A MAJOR IN COMPUTER SCIENCE  - COLLEGE OF ENGINEERING",
+    "overall_progress": 70.0,
+    "met_groups": 7,
+    "num_of_requirements": 10,
     "categories": [{
         "name": "Critical Tracking Courses",
         "courses": [{
-            "name": "General Chemistry or CHM2095 ",
-            "code": "CHM2045",
-            "credits": "3.00",
+            "name": "General Chemistry or CHM2095 - Chemistry for Engineers 1",
+            "code": "CHM2045 ",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 503572
         }, {
             "name": "Analyt Geom and Calc 1",
-            "code": "MAC2311",
-            "credits": "3.00",
+            "code": "MAC2311 ",
+            "credits_required": "3.00",
+            "credits_towards": "4.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 503572
         }, {
             "name": "Analyt Geom and Calc 2",
-            "code": "MAC2312",
-            "credits": "3.00",
+            "code": "MAC2312 ",
+            "credits_required": "3.00",
+            "credits_towards": "4.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 503572
         }, {
             "name": "Analyt Geom and Calc 3",
-            "code": "MAC2313",
-            "credits": "3.00",
+            "code": "MAC2313 ",
+            "credits_required": "3.00",
+            "credits_towards": "4.00",
+            "passed": true,
+            "inProgress": false,
+            "description": ".",
             "group": 503572
         }, {
             "name": "Programming Fundamentals 1",
-            "code": "COP3502",
-            "credits": "3.00",
+            "code": "COP3502 ",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "passed": true,
+            "inProgress": false,
+            "description": ".",
             "group": 503572
         }, {
             "name": "Physics with Calculus 1",
-            "code": "PHY2048",
-            "credits": "3.00",
+            "code": "PHY2048 ",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "passed": true,
+            "inProgress": false,
+            "description": ".",
             "group": 503572
         }, {
             "name": "Physics with Calculus 2",
-            "code": "PHY2049",
-            "credits": "3.00",
+            "code": "PHY2049 ",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "passed": true,
+            "inProgress": false,
+            "description": ".",
             "group": 503572
-        }]
+        }],
+        "completed": 7,
+        "description": "Complete all of the following: CHM 2045 or CHM 2095, MAC 2311, MAC 2312, MAC 2313, COP 3502, PHY 2048, PHY 2049",
+        "percent_complete": 100.0
     }, {
         "name": "Computer Science - Core",
         "courses": [{
             "name": "Programming Fundamentals 2",
-            "code": "COP3503",
-            "credits": "3.00",
+            "code": "COP3503 ",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "A grade of &apos;C&apos; or better required.",
             "group": 503571
         }, {
-            "name": "Introduction to Computer Organization",
-            "code": "CDA 310",
-            "credits": "3.00",
+            "name": "- Introduction to Computer Organization",
+            "code": "CDA 3101",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "passed": true,
+            "inProgress": true,
+            "description": "",
             "group": 503571
         }, {
             "name": "Applications of Discrete Structures",
-            "code": "COT3100",
-            "credits": "3.00",
+            "code": "COT3100 ",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 503571
         }, {
             "name": "Data Structures and Algorithm",
-            "code": "COP3530",
-            "credits": "4.00",
+            "code": "COP3530 ",
+            "credits_required": "4.00",
+            "credits_towards": "4.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 503571
         }, {
-            "name": "Numerical Analysis",
-            "code": "COT4501",
-            "credits": "3.00",
+            "name": "Numerical Analysis: A Computational Approach",
+            "code": "COT4501 ",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "description": "or &#xA0;MAD4401 - Introduction to Numerical Analysis",
             "group": 503571
         }, {
-            "name": "Digital Logic and Computer Systems",
-            "code": "EEL3701",
-            "credits": "4.00",
+            "name": " Digital Logic and Computer Systems",
+            "code": "EEL3701C",
+            "credits_required": "4.00",
+            "credits_towards": "4.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 503571
         }, {
             "name": "Information and Database Systems 1",
-            "code": "CIS4301",
-            "credits": "3.00",
+            "code": "CIS4301 ",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "description": "",
             "group": 503571
         }, {
             "name": "Operating Systems",
-            "code": "COP4600",
-            "credits": "3.00",
+            "code": "COP4600 ",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "description": ".",
             "group": 503571
         }, {
             "name": "Introduction to Software Engineering",
-            "code": "CEN3031",
-            "credits": "3.00",
+            "code": "CEN3031 ",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "description": "",
             "group": 503571
         }, {
-            "name": "Computer Network Fundamentals",
-            "code": "CNT4007",
-            "credits": "4.00",
+            "name": " Computer Network Fundamentals",
+            "code": "CNT4007C",
+            "credits_required": "4.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "description": "",
             "group": 503571
         }, {
-            "name": "Senior Project or CIS4913C ",
-            "code": "CIS4914",
-            "credits": "3.00",
+            "name": "Senior Project or CIS4913C - Integ Prod Design 2",
+            "code": "CIS4914 ",
+            "credits_required": "3.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "description": ".",
             "group": 503571
-        }]
+        }],
+        "completed": 5,
+        "description": "",
+        "percent_complete": 45.45454545454545
     }, {
         "name": "Pre-professional Labs",
         "courses": [{
-            "name": "General Chemistry 1 Lab",
-            "code": "CHM2045",
-            "credits": "1.00",
+            "name": " General Chemistry 1 Lab",
+            "code": "CHM2045L",
+            "credits_required": "1.00",
+            "credits_towards": "1.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 503571
         }, {
-            "name": "Physics 1 Lab",
-            "code": "PHY2048",
-            "credits": "1.00",
+            "name": " Physics 1 Lab",
+            "code": "PHY2048L",
+            "credits_required": "1.00",
+            "credits_towards": "1.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 503571
         }, {
-            "name": "Physics 2 Lab",
-            "code": "PHY2049",
-            "credits": "1.00",
+            "name": " Physics 2 Lab",
+            "code": "PHY2049L",
+            "credits_required": "1.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "description": "",
             "group": 503571
-        }]
+        }],
+        "completed": 2,
+        "description": "",
+        "percent_complete": 66.66666666666666
     }, {
         "name": "Summary of Major Coursework",
         "courses": [{
             "name": "Tech Writing",
-            "code": "ENC3246",
-            "credits": "3.00",
+            "code": "ENC3246 ",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "passed": true,
+            "inProgress": true,
+            "description": "",
             "group": 503571
         }, {
-            "name": "Linear Algebra",
-            "code": "MAS3114",
-            "credits": "3.00",
+            "name": " MAS4105 - Linear Algebra",
+            "code": "MAS3114 ",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 503571
         }, {
             "name": "Engineering Statistics",
-            "code": "STA3032",
-            "credits": "3.00",
+            "code": "STA3032 ",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 503571
         }, {
-            "name": "Professional Ethics",
-            "code": "EGS4034",
-            "credits": "1.00",
+            "name": " CGS3065 - Professional Ethics",
+            "code": "EGS4034 ",
+            "credits_required": "1.00",
+            "credits_towards": "1.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 503571
-        }]
+        }],
+        "completed": 4,
+        "description": "",
+        "percent_complete": 100.0
     }, {
         "name": "Computer Science - Communications (3 Credits)",
         "courses": [{
             "name": "Approved Writing or Public Speaking Courses.  – (3 Credits)",
             "code": "Elective(s)",
-            "credits": "3.00",
-            "group": 503571
-        }]
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "group": 503571,
+            "passed": true,
+            "description": ""
+        }],
+        "completed": 0,
+        "description": "",
+        "percent_complete": 100.0
     }, {
         "name": "Computer Science - Interdisciplnary Electives (14 Credits)",
         "courses": [{
             "name": "Option A:  3000 Level or Above",
             "code": "Elective(s)",
-            "credits": "14.00",
-            "group": 503571
+            "credits_required": "14.00",
+            "credits_towards": "0.00",
+            "group": 503571,
+            "passed": false,
+            "description": "All courses must be at the 3000 level or above and in the same area (advisor approval required)."
         }, {
             "name": "Option B: Minor",
             "code": "Elective(s)",
-            "credits": "14.00",
-            "group": 503571
-        }]
+            "credits_required": "14.00",
+            "credits_towards": "0.00",
+            "group": 503571,
+            "passed": false,
+            "description": "All credits must be applied towards an official UF minor."
+        }],
+        "completed": 0,
+        "description": "",
+        "percent_complete": 0.0
     }, {
         "name": "Computer Science - Technical Electives (15 Credits)",
         "courses": [{
             "name": "Technical Electives and Co-Op/Internship Courses",
             "code": "Elective(s)",
-            "credits": "15.00",
-            "group": 503571
-        }]
+            "credits_required": "15.00",
+            "credits_towards": "9.00",
+            "group": 503571,
+            "passed": false,
+            "description": "Complete 15 credits of 4000 level coursework with a prefix of CAP, CDA, CEN, CIS, COP, COT AND CGS 3065, EIN 4354, with a maximum of 3 credits of Co-Op/Internship allowed."
+        }],
+        "completed": 0,
+        "description": "",
+        "percent_complete": 60.0
     }, {
         "name": "University Required Course",
         "courses": [{
-            "name": "What is the Good Life",
-            "code": "IUF1000",
-            "credits": "0.00",
+            "name": " IDS1161 - What is the Good Life",
+            "code": "IUF1000 ",
+            "credits_required": "0.00",
+            "credits_towards": "2.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 502147
-        }]
+        }],
+        "completed": 1,
+        "description": "What is the Good Life",
+        "percent_complete": 100.0
     }, {
         "name": "State General Education Requirement",
         "courses": [{
             "name": "Composition",
             "code": "Elective(s)",
-            "credits": "3.00",
-            "group": 502147
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "group": 502147,
+            "passed": true,
+            "description": "Complete One of the Following Courses: ENC1101, ENC1102, ENC1145, ENC2210, ENC2305, ENC3246, ENC3254, ENC3459"
         }, {
             "name": "Humanities",
             "code": "Elective(s)",
-            "credits": "3.00",
-            "group": 502147
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "group": 502147,
+            "passed": true,
+            "description": "Complete One of the Following Courses: ARH2000, HUM1020, LIT2000, MUL2010, PHI2010, THE2000"
         }, {
             "name": "Social and Behavioral Science",
             "code": "Elective(s)",
-            "credits": "3.00",
-            "group": 502147
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "group": 502147,
+            "passed": true,
+            "description": "Complete One of the Following Courses: AMH2020, ANT2000, ECO2013, POS2041, PSY2012, SYG2000"
         }, {
             "name": "Mathematics",
             "code": "Elective(s)",
-            "credits": "3.00",
-            "group": 502147
+            "credits_required": "3.00",
+            "credits_towards": "4.00",
+            "group": 502147,
+            "passed": true,
+            "description": ""
         }, {
             "name": "Biological and Physical Sciences",
             "code": "Elective(s)",
-            "credits": "3.00",
-            "group": 502147
-        }]
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "group": 502147,
+            "passed": true,
+            "description": "Complete One of the Following Courses: AST1002, BSC2005, BSC2010, BSC2085, CHM1020, CHM2045, ESC1000, EVR2001, PHY2020, PHY2048, PHY2053"
+        }],
+        "completed": 0,
+        "description": "Complete One Course from Each of the Following",
+        "percent_complete": 100.0
     }, {
         "name": "Composition (6 Credits)",
         "courses": [{
             "name": "Composition",
             "code": "Elective(s)",
-            "credits": "6.00",
-            "group": 503650
-        }]
+            "credits_required": "6.00",
+            "credits_towards": "6.00",
+            "group": 503650,
+            "passed": true,
+            "description": ""
+        }],
+        "completed": 0,
+        "description": "",
+        "percent_complete": 100.0
     }, {
         "name": "Humanities (6 Credits)",
         "courses": [{
             "name": "Humanities Courses",
             "code": "Elective(s)",
-            "credits": "6.00",
-            "group": 503650
-        }]
+            "credits_required": "6.00",
+            "credits_towards": "6.00",
+            "group": 503650,
+            "passed": true,
+            "description": "Humanities Courses"
+        }],
+        "completed": 0,
+        "description": "",
+        "percent_complete": 100.0
     }, {
         "name": "Social & Behavioral Science Courses (6 Credits)",
         "courses": [{
             "name": "Social Science Courses",
             "code": "Elective(s)",
-            "credits": "6.00",
-            "group": 503650
-        }]
+            "credits_required": "6.00",
+            "credits_towards": "6.00",
+            "group": 503650,
+            "passed": true,
+            "description": "Social Science Courses"
+        }],
+        "completed": 0,
+        "description": "",
+        "percent_complete": 100.0
     }, {
         "name": "Mathematics (6 Credits)",
         "courses": [{
-            "name": "Analytical Geometry ",
-            "code": "MAC2311",
-            "credits": "3.00",
+            "name": "Analytical Geometry & Calculus 1",
+            "code": "MAC2311 ",
+            "credits_required": "3.00",
+            "credits_towards": "4.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 503650
         }, {
             "name": "Calculus 2",
-            "code": "MAC2312",
-            "credits": "3.00",
+            "code": "MAC2312 ",
+            "credits_required": "3.00",
+            "credits_towards": "4.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 503650
-        }]
+        }],
+        "completed": 2,
+        "description": "MAC2311 and MAC2312",
+        "percent_complete": 100.0
     }, {
         "name": "Physical/Biological Sciences (12 Credits)",
         "courses": [{
             "name": "General Chemistry 1",
-            "code": "CHM2045",
-            "credits": "3.00",
+            "code": "CHM2045 ",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 503650
         }, {
             "name": "CHM2045l - General Chemistry 1 Laboratory",
             "code": "Elective(s)",
-            "credits": "1.00",
-            "group": 503650
+            "credits_required": "1.00",
+            "credits_towards": "1.00",
+            "group": 503650,
+            "passed": true,
+            "description": ""
         }, {
             "name": "Physics with Calculus 1",
-            "code": "PHY2048",
-            "credits": "3.00",
+            "code": "PHY2048 ",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 503650
         }, {
-            "name": "Physics with Calculus 1 Lab",
-            "code": "PHY2048",
-            "credits": "1.00",
+            "name": " Physics with Calculus 1 Lab",
+            "code": "PHY2048L",
+            "credits_required": "1.00",
+            "credits_towards": "1.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 503650
         }, {
             "name": "Physics with Calculus 2",
-            "code": "PHY2049",
-            "credits": "3.00",
+            "code": "PHY2049 ",
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "passed": true,
+            "inProgress": false,
+            "description": "",
             "group": 503650
         }, {
-            "name": "Physics with Calculus 2 Lab",
-            "code": "PHY2049",
-            "credits": "1.00",
+            "name": " Physics with Calculus 2 Lab",
+            "code": "PHY2049L",
+            "credits_required": "1.00",
+            "credits_towards": "0.00",
+            "passed": false,
+            "inProgress": false,
+            "description": "",
             "group": 503650
-        }]
+        }],
+        "completed": 4,
+        "description": "CHM2045, CHM2045L, PHY2048, PHY2048L, PHY2049, PHY2049L",
+        "percent_complete": 100.0
     }, {
         "name": "International/Diversity Requirement",
         "courses": [{
             "name": "International Focus - 3 Credits",
             "code": "Elective(s)",
-            "credits": "3.00",
-            "group": 502146
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "group": 502146,
+            "passed": true,
+            "description": "International Focus - 3 Credits"
         }, {
             "name": "Diversity Focus - 3 Credits",
             "code": "Elective(s)",
-            "credits": "3.00",
-            "group": 502146
-        }]
+            "credits_required": "3.00",
+            "credits_towards": "3.00",
+            "group": 502146,
+            "passed": true,
+            "description": "Diversity Focus - 3 Credits"
+        }],
+        "completed": 0,
+        "description": "General Education International &amp; Diversity Focus",
+        "percent_complete": 100.0
     }, {
         "name": "Summer Enrollment",
         "courses": [{
             "name": "OPTION 1: UF Summer Courses (9 Credits)",
             "code": "Elective(s)",
-            "credits": "9.00",
-            "group": 502149
-        }]
+            "credits_required": "9.00",
+            "credits_towards": "48.00",
+            "group": 502149,
+            "passed": true,
+            "description": "Note: Only UF Courses will appear here"
+        }],
+        "completed": 0,
+        "description": "Requires nine credits of summer enrollment at public state of Florida universities, or six credits of UF-sponsored, UF exchange, or approved SUS study-abroad during one or two summer terms.",
+        "percent_complete": 100
     }]
 }

@@ -8,7 +8,6 @@ from api.utils import parse_audit
 # Create your tests here.
 class TestAPI(TestCase):
     def setUp(self):
-        print(os.getcwd())
         self.data = json.load(open("api/tests/data-raw.json"))
         self.user = User.objects.create(username="test-user")
 
