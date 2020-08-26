@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from uuid import uuid4
 
 # Create your models here.
 
@@ -42,9 +43,18 @@ class Course(models.Model):
         return f"{self.category} - {self.code}"
 
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    token = models.UUIDField(verbose_name="token", default=uuid4, editable=False)
+    program = models.ForeignKey(Program, blank=True, null=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.user)
+
+
 class Semester(models.Model):
     number = models.PositiveIntegerField()
     term = models.CharField(max_length=200)
     courses = models.ManyToManyField(Course, related_name="semesters")
-    user = models.ForeignKey(User, related_name="semesters", on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, related_name="semesters", on_delete=models.CASCADE)
 
