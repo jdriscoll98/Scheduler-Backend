@@ -9,7 +9,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
-from .serializers import FetchCoursesSerializer, UserSerializer, CategorySerializer, SemesterSerializer
+from .serializers import FetchCoursesSerializer, UserSerializer, CategorySerializer, SemesterSerializer, ProgramSerializer, CourseSerializer
 from .utils import parse_audit
 from .models import Category, Program, Semester
 import requests
@@ -89,3 +89,23 @@ class Authenticate(ObtainAuthToken):
         token, created = Token.objects.get_or_create(user=user)
         return Response({"token": token.key, "username": user.username})
 
+
+class ProgramList(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, format=None):
+        programs = request.user.programs.all()
+        data = {"programs": []}
+        for program in programs:
+            program_serialized = dict(ProgramSerializer(program).data)
+            program_serialized["categories"] = []
+            for category in program.categories.all():
+                category_serialized = dict(CategorySerializer(category).data)
+                category_serialized["courses"] = []
+                for course in category.courses.all():
+                    course_serialized = CourseSerializer(course)
+                    category_serialized["courses"].append(course_serialized.data)
+                program_serialized["categories"].append(category_serialized)
+            data["programs"].append(program_serialized)
+
+        return Response(data=data, status=status.HTTP_200_OK)

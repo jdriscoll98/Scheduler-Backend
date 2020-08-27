@@ -9,9 +9,7 @@ TYPES = [("Major", "Major"), ("Minor", "Minor")]
 
 class Program(models.Model):
     label = models.CharField(max_length=200)
-    overall_progress = models.DecimalField(decimal_places=2, max_digits=6)
-    met_groups = models.IntegerField()
-    number_of_requirements = models.IntegerField()
+    number_of_requirements = models.IntegerField(default=0)
     user = models.ForeignKey(User, related_name="programs", on_delete=models.CASCADE)
 
     def __str__(self):
@@ -20,9 +18,7 @@ class Program(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
-    completed = models.PositiveIntegerField(default=0)
     description = models.CharField(max_length=500)
-    percent_complete = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
     program = models.ForeignKey(Program, related_name="categories", on_delete=models.CASCADE)
 
     def __str__(self):
@@ -32,30 +28,24 @@ class Category(models.Model):
 class Course(models.Model):
     name = models.CharField(max_length=200)
     code = models.CharField(max_length=200)
-    credits_required = models.DecimalField(decimal_places=2, max_digits=4)
-    credits_towards = models.DecimalField(decimal_places=2, max_digits=4)
+    credits = models.DecimalField(decimal_places=3, max_digits=10, default=0)
+    credits_required = models.DecimalField(decimal_places=3, max_digits=10, default=0)
     passed = models.BooleanField(default=False)
     inProgress = models.BooleanField(default=False)
-    description = models.CharField(max_length=200)
+    description = models.CharField(max_length=200, blank=True, default="N/A")
     category = models.ForeignKey(Category, related_name="courses", on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.category} - {self.code}"
 
 
-class PlannedCourse(models.Model):
-    name = models.CharField(max_length=200)
-    term = models.CharField(max_length=200)
-    credits = models.DecimalField(decimal_places=2, max_digits=4)
-    code = models.CharField(max_length=200)
-    category = models.ForeignKey(Category, related_name="planned_courses", on_delete=models.CASCADE)
-
-
 class Semester(models.Model):
     number = models.PositiveIntegerField()
     term = models.CharField(max_length=200)
     year = models.CharField(max_length=4)
-    courses = models.ManyToManyField(PlannedCourse, related_name="semesters")
+    notes = models.TextField(blank=True, null=True)
+    courses = models.ManyToManyField(Course, related_name="semesters")
     user = models.ForeignKey(User, related_name="semesters", on_delete=models.CASCADE)
-    notes = models.TextField()
 
+    def __str__(self):
+        return self.user.username + " - " + self.term + " " + self.year
