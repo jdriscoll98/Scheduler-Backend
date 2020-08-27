@@ -3,11 +3,11 @@ from django.shortcuts import get_object_or_404
 import re
 
 
-def parse_audit(data, request):
+def parse_audit(data, user):
     majorGroup = data["careers"][0]["planGroups"][1]
     progress = round(data["careers"][0]["progressValue"] * 100, 2)
     program = Program.objects.create(
-        user=request.user,
+        user=user,
         label=majorGroup[0]["title"],
         overall_progress=progress,
         met_groups=data["careers"][0]["numberOfMet"] + data["careers"][0]["numberOfInProgress"],

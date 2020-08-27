@@ -43,9 +43,19 @@ class Course(models.Model):
         return f"{self.category} - {self.code}"
 
 
+class PlannedCourse(models.Model):
+    name = models.CharField(max_length=200)
+    term = models.CharField(max_length=200)
+    credits = models.DecimalField(decimal_places=2, max_digits=4)
+    code = models.CharField(max_length=200)
+    category = models.ForeignKey(Category, related_name="planned_courses", on_delete=models.CASCADE)
+
+
 class Semester(models.Model):
     number = models.PositiveIntegerField()
     term = models.CharField(max_length=200)
-    courses = models.ManyToManyField(Course, related_name="semesters")
+    year = models.CharField(max_length=4)
+    courses = models.ManyToManyField(PlannedCourse, related_name="semesters")
     user = models.ForeignKey(User, related_name="semesters", on_delete=models.CASCADE)
+    notes = models.TextField()
 

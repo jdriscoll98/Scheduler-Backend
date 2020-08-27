@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-
+from .models import Category, PlannedCourse, Semester
 
 # serializer to take in search filters
 class FetchCoursesSerializer(serializers.Serializer):
@@ -25,3 +25,22 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ("id", "username", "password")
 
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ("name", "description")
+
+
+class PlannedCourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PlannedCourse
+        fields = "__all__"
+
+
+class SemesterSerializer(serializers.ModelSerializer):
+    courses = PlannedCourseSerializer(many=True)
+
+    class Meta:
+        model = Semester
+        fields = ("courses", "number", "term", "year", "notes")

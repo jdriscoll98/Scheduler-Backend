@@ -7,6 +7,8 @@ urlpatterns = [
     path("register/", views.CreateUserView.as_view()),
     path("upload/", views.ProcessAuditView.as_view()),
     path("login/", views.Authenticate.as_view()),
+    path("categories/", views.CategoryList.as_view()),
+    path("semesters/", views.CreateSemester.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

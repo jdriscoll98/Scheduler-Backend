@@ -3,13 +3,15 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import permissions
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, ListCreateAPIView
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
-from .serializers import FetchCoursesSerializer, UserSerializer
+from .serializers import FetchCoursesSerializer, UserSerializer, CategorySerializer, SemesterSerializer
 from .utils import parse_audit
+from .models import Category, Program, Semester
 import requests
 import json
 from django.contrib.auth import authenticate, login, logout
@@ -50,6 +52,24 @@ class FetchCourses(APIView):
 class CreateUserView(CreateAPIView):
     model = User
     serializer_class = UserSerializer
+
+
+class CategoryList(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CategorySerializer
+
+    def get_queryset(self):
+        programs = Program.objects.filter(user=self.request.user)
+        return Category.objects.filter(program__in=programs)
+
+
+class CreateSemester(ListCreateAPIView):
+    model = Semester
+    serializer_class = SemesterSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Semester.objects.filter(user=self.request.user)
 
 
 class ProcessAuditView(APIView):
