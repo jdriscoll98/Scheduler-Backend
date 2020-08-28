@@ -68,6 +68,27 @@ class CreateSemester(ListCreateAPIView):
     serializer_class = SemesterSerializer
     permission_classes = [IsAuthenticated]
 
+    def create(self, request, *args, **kwargs):
+        response = super(CreateSemester, self).create(request, *args, **kwargs)
+        data = {
+            "semester": response.data,
+        }
+        data["programs"] = []
+        programs = request.user.programs.all()
+        for program in programs:
+            program_serialized = dict(ProgramSerializer(program).data)
+            program_serialized["categories"] = []
+            for category in program.categories.all():
+                category_serialized = dict(CategorySerializer(category).data)
+                category_serialized["courses"] = []
+                for course in category.courses.all():
+                    course_serialized = CourseSerializer(course)
+                    category_serialized["courses"].append(course_serialized.data)
+                program_serialized["categories"].append(category_serialized)
+            data["programs"].append(program_serialized)
+
+        return Response(data=data, status=status.HTTP_201_CREATED)
+
     def get_queryset(self):
         return Semester.objects.filter(user=self.request.user)
 

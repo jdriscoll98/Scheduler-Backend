@@ -51,25 +51,28 @@ class SemesterSerializer(serializers.ModelSerializer):
             notes=validated_data["notes"],
             user=self.context["request"].user,
         )
-        for course in validated_data["courses"]:
-            user_programs = self.context["request"].user.programs.all()
-            for program in user_programs:
-                category = program.categories.filter(name=course["category"])
-                if category.exists():
-                    category = category.first()
-                    break
-
+        for addedCourse in validated_data["courses"]:
+            category = Category.objects.get(name=addedCourse["category"])
             course, created = category.courses.get_or_create(
-                code=course["code"],
+                code=addedCourse["code"],
                 defaults={
-                    "name": course["name"],
-                    "code": course["code"],
-                    "credits": course["credits"],
+                    "name": addedCourse["name"],
+                    "code": addedCourse["code"],
+                    "credits": addedCourse["credits"],
+                    "credits_required": addedCourse["credits"],
                     "inProgress": True,
                     "description": "User Added Course",
                     "category": category,
                 },
             )
+            course.save()
+            if not created:
+                print("course existed")
+                course.credits = addedCourse["credits"]
+                course.inProgress = True
+                course.save()
+            else:
+                print("created new course")
             semester.courses.add(course.id)
         semester.save()
 
