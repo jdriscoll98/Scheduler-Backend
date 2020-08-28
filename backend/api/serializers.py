@@ -68,11 +68,19 @@ class SemesterSerializer(serializers.ModelSerializer):
             course.save()
             if not created:
                 print("course existed")
-                course.credits = addedCourse["credits"]
+                course.credits += addedCourse["credits"]
                 course.inProgress = True
                 course.save()
             else:
                 print("created new course")
+                # test
+                for cat_course in category.courses.all():
+                    if not cat_course.passed:
+                        cat_course.credits += addedCourse["credits"]
+                        if cat_course.credits >= cat_course.credits_required:
+                            cat_course.passed = True
+                        cat_course.save()
+                        break
             semester.courses.add(course.id)
         semester.save()
 

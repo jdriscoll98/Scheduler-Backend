@@ -22,7 +22,7 @@ def parse_audit(data, user):
                             if re.match("^[A-Z]{3} ?[0-9]{4}[A-Z]{0,1} ?$", subreq["title"][:8]):
                                 course = Course.objects.create(
                                     name=subreq["title"][10:],
-                                    code=subreq["title"][:8],
+                                    code=subreq["title"][:8].strip(),
                                     credits_required=subreq["unitsRequired"],
                                     credits=subreq["unitsUsed"],
                                     passed=subreq["met"],

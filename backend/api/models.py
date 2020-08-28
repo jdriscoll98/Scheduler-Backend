@@ -28,8 +28,8 @@ class Category(models.Model):
 class Course(models.Model):
     name = models.CharField(max_length=200)
     code = models.CharField(max_length=200)
-    credits = models.DecimalField(decimal_places=2, max_digits=10, default=0)
-    credits_required = models.DecimalField(decimal_places=2, max_digits=10, default=0)
+    credits = models.IntegerField(default=0)
+    credits_required = models.IntegerField(default=0)
     passed = models.BooleanField(default=False)
     inProgress = models.BooleanField(default=False)
     description = models.CharField(max_length=200, blank=True, default="N/A")
