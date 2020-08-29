@@ -8,7 +8,8 @@ urlpatterns = [
     path("upload/", views.ProcessAuditView.as_view()),
     path("login/", views.Authenticate.as_view()),
     path("categories/", views.CategoryList.as_view()),
-    path("semesters/", views.CreateSemester.as_view()),
+    path("semesters/", views.Semesters.as_view()),
+    path("semesters/<int:pk>", views.UpdateSemesters.as_view()),
     path("programs/", views.ProgramList.as_view()),
 ]
 

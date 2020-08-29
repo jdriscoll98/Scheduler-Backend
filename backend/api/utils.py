@@ -1,6 +1,7 @@
 from .models import Program, Category, Course
 from django.shortcuts import get_object_or_404
 import re
+from .serializers import ProgramSerializer, CategorySerializer, CourseSerializer
 
 
 def parse_audit(data, user):
@@ -23,8 +24,8 @@ def parse_audit(data, user):
                                 course = Course.objects.create(
                                     name=subreq["title"][10:],
                                     code=subreq["title"][:8].strip(),
-                                    credits_required=subreq["unitsRequired"],
-                                    credits=subreq["unitsUsed"],
+                                    credits_required=float(subreq["unitsRequired"]),
+                                    credits=float(subreq["unitsUsed"]),
                                     passed=subreq["met"],
                                     inProgress=subreq["inProgress"],
                                     description=subreq["description"],
@@ -36,16 +37,33 @@ def parse_audit(data, user):
                                 if elective_credits >= 1:
                                     course = Course.objects.create(
                                         name=subreq["title"],
-                                        code="Elective(s)",
-                                        credits_required=subreq["unitsRequired"],
-                                        credits=subreq["unitsUsed"],
+                                        code="Current Status",
+                                        credits_required=float(subreq["unitsRequired"]),
+                                        credits=float(subreq["unitsUsed"]),
                                         passed=subreq["met"],
                                         description=subreq["description"],
                                         category=category,
                                     )
                                     course.save()
                                     category.save()
-                        if len(category.courses.all()) < 0:
+                        if len(category.courses.all()) <= 0:
                             category.delete()
         programs.append(program)
     return programs
+
+
+def getPrograms(user):
+    programs = user.programs.all()
+    serialized_programs = []
+    for program in programs:
+        program_serialized = dict(ProgramSerializer(program).data)
+        program_serialized["categories"] = []
+        for category in program.categories.all():
+            category_serialized = dict(CategorySerializer(category).data)
+            category_serialized["courses"] = []
+            for course in category.courses.all():
+                course_serialized = CourseSerializer(course)
+                category_serialized["courses"].append(course_serialized.data)
+            program_serialized["categories"].append(category_serialized)
+        serialized_programs.append(program_serialized)
+    return serialized_programs

@@ -44,51 +44,36 @@ class SemesterSerializer(serializers.ModelSerializer):
     courses = CourseSerializer(many=True)
 
     def create(self, validated_data):
-        semester = Semester.objects.create(
-            number=validated_data["number"],
-            term=validated_data["term"],
-            year=validated_data["year"],
-            notes=validated_data["notes"],
-            user=self.context["request"].user,
-        )
-        for addedCourse in validated_data["courses"]:
-            category = Category.objects.get(name=addedCourse["category"])
-            course, created = category.courses.get_or_create(
-                code=addedCourse["code"],
-                defaults={
-                    "name": addedCourse["name"],
-                    "code": addedCourse["code"],
-                    "credits": addedCourse["credits"],
-                    "credits_required": addedCourse["credits"],
-                    "inProgress": True,
-                    "description": "User Added Course",
-                    "category": category,
-                },
-            )
-            course.save()
-            if not created:
-                print("course existed")
-                course.credits += addedCourse["credits"]
-                course.inProgress = True
-                course.save()
+        courses = validated_data.pop("courses")
+        validated_data["user"] = self.context["request"].user
+        semester = Semester.objects.create(**validated_data)
+        for course in courses:
+            exisiting_courses = Course.objects.filter(code=course["code"])
+            # all courses with this code that exist in the audit should be updated
+            if exisiting_courses:
+                courseAddedToSemester = False
+                for existing_course in exisiting_courses:
+                    existing_course.inProgress = True
+                    existing_course.credits = course["credits"]
+                    # only add course to semester once
+                    if not courseAddedToSemester:
+                        existing_course.semester = semester
+                        courseAddedToSemester = True
+                    existing_course.save()
             else:
-                print("created new course")
-                # test
-                for cat_course in category.courses.all():
-                    if not cat_course.passed:
-                        cat_course.credits += addedCourse["credits"]
-                        if cat_course.credits >= cat_course.credits_required:
-                            cat_course.passed = True
-                        cat_course.save()
-                        break
-            semester.courses.add(course.id)
+                # Course is not specified in audit, therefore we manually add it to specified category
+                category = course["category"]
+                course["category"] = Category.objects.get(name=category)
+                new_course = Course.objects.create(**course)
+                new_course.semester = semester
+                new_course.inProgress = True
+                new_course.save()
         semester.save()
-
         return semester
 
     class Meta:
         model = Semester
-        fields = ("courses", "number", "term", "year", "notes")
+        fields = ("id", "courses", "number", "term", "year", "notes")
 
 
 class ProgramSerializer(serializers.ModelSerializer):

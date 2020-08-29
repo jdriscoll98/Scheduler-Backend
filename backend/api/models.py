@@ -25,6 +25,17 @@ class Category(models.Model):
         return self.name
 
 
+class Semester(models.Model):
+    number = models.PositiveIntegerField()
+    term = models.CharField(max_length=200)
+    year = models.CharField(max_length=4)
+    notes = models.TextField(blank=True, null=True)
+    user = models.ForeignKey(User, related_name="semesters", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username + " - " + self.term + " " + self.year
+
+
 class Course(models.Model):
     name = models.CharField(max_length=200)
     code = models.CharField(max_length=200)
@@ -33,19 +44,8 @@ class Course(models.Model):
     passed = models.BooleanField(default=False)
     inProgress = models.BooleanField(default=False)
     description = models.CharField(max_length=200, blank=True, default="N/A")
+    semester = models.ForeignKey(Semester, related_name="courses", null=True, blank=True, on_delete=models.SET_NULL)
     category = models.ForeignKey(Category, related_name="courses", on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.category} - {self.code}"
-
-
-class Semester(models.Model):
-    number = models.PositiveIntegerField()
-    term = models.CharField(max_length=200)
-    year = models.CharField(max_length=4)
-    notes = models.TextField(blank=True, null=True)
-    courses = models.ManyToManyField(Course, related_name="semesters")
-    user = models.ForeignKey(User, related_name="semesters", on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.user.username + " - " + self.term + " " + self.year
