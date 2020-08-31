@@ -16,20 +16,23 @@ def parse_audit(data, user):
                 for requirement in requirements:
                     subrequirements = requirement.get("subRequirements")
                     if subrequirements:
-                        category = Category.objects.create(name=requirement["title"], description=requirement["description"], program=program)
+                        category = Category.objects.create(
+                            name=requirement["title"], description=requirement["description"], program=program, user=user
+                        )
                         category.save()
                         for subreq in subrequirements:
                             title = re.search("(?<= - )[A-Za-z0-9. ]+", subreq["title"])
                             if re.match("^[A-Z]{3} ?[0-9]{4}[A-Z]{0,1} ?$", subreq["title"][:8]):
                                 course = Course.objects.create(
                                     name=subreq["title"][10:],
-                                    code=subreq["title"][:8].strip(),
+                                    code=subreq["title"][:8].replace(" ", ""),
                                     credits_required=float(subreq["unitsRequired"]),
                                     credits=float(subreq["unitsUsed"]),
                                     passed=subreq["met"],
                                     inProgress=subreq["inProgress"],
-                                    description=subreq["description"],
+                                    description="N/A",
                                     category=category,
+                                    user=user,
                                 )
                                 course.save()
                             else:
@@ -43,6 +46,7 @@ def parse_audit(data, user):
                                         passed=subreq["met"],
                                         description=subreq["description"],
                                         category=category,
+                                        user=user,
                                     )
                                     course.save()
                                     category.save()
