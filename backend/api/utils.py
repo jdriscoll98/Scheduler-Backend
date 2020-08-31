@@ -24,7 +24,7 @@ def parse_audit(data, user):
                             title = re.search("(?<= - )[A-Za-z0-9. ]+", subreq["title"])
                             if re.match("^[A-Z]{3} ?[0-9]{4}[A-Z]{0,1} ?$", subreq["title"][:8]):
                                 course = Course.objects.create(
-                                    name=subreq["title"][10:],
+                                    name=subreq["title"][10:].strip(),
                                     code=subreq["title"][:8].replace(" ", ""),
                                     credits_required=float(subreq["unitsRequired"]),
                                     credits=float(subreq["unitsUsed"]),

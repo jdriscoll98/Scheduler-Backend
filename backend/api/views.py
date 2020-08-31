@@ -87,6 +87,19 @@ class UpdateSemesters(RetrieveUpdateDestroyAPIView):
         data = {"semester": response.data, "programs": getPrograms(request.user)}
         return Response(data=data, status=status.HTTP_200_OK)
 
+    def delete(self, request, *args, **kwargs):
+        instance = self.get_object()
+        for course in instance.courses.all():
+            if course.description == "User Added Course":
+                course.delete()
+            else:
+                course.inProgress = False
+                course.credits = 0
+        instance.delete()
+
+        data = {"programs": getPrograms(request.user)}
+        return Response(data=data, status=status.HTTP_200_OK)
+
     def get_queryset(self):
         return Semester.objects.filter(user=self.request.user)
 

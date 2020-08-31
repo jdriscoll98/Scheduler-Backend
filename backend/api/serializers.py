@@ -49,6 +49,7 @@ class SemesterSerializer(serializers.ModelSerializer):
         for course in data["courses"]:
             exisiting_course = Course.objects.filter(user=self.context["request"].user, code=course["code"], name=course["name"], semester=None)
             if course["category"] == "Auto" and not exisiting_course.exists():
+                print(course["code"], course["name"])
                 raise serializers.ValidationError(
                     "Could not auto generate a category for one or more courses, please double check each courses audit requirement"
                 )
@@ -124,25 +125,34 @@ class SemesterSerializer(serializers.ModelSerializer):
         courses = validated_data.pop("courses")
         validated_data["user"] = self.context["request"].user
         semester = Semester.objects.create(**validated_data)
-        for course in courses:
-            exisiting_courses = Course.objects.filter(code=course["code"], name=course["name"], user=self.context["request"].user)
-            # all courses with this code that exist in the audit should be updated
-            if exisiting_courses:
-                for existing_course in exisiting_courses:
-                    existing_course.inProgress = True
-                    existing_course.credits = course["credits"]
-                    existing_course.semester = semester
-                    existing_course.save()
-            else:
-                # Course is not specified in audit, therefore we manually add it to specified category
+        for course in courses:  # remaining courses to add
+            if course["code"] == "User-Added":
                 category = course["category"]
-                if category != "Auto":
-                    course["category"] = Category.objects.get(name=category, user=self.context["request"].user)
-                    course["user"] = self.context["request"].user
-                    new_course = Course.objects.create(**course)
-                    new_course.semester = semester
-                    new_course.inProgress = True
-                    new_course.save()
+                course["category"] = Category.objects.get(name=category, user=self.context["request"].user)
+                course["user"] = self.context["request"].user
+                new_course = Course.objects.create(**course)
+                new_course.semester = semester
+                new_course.inProgress = True
+                new_course.save()
+            else:
+                exisiting_courses = Course.objects.filter(code=course["code"], name=course["name"], user=self.context["request"].user)
+                if exisiting_courses:
+                    # all courses with this code that exist in the audit should be updated
+                    for existing_course in exisiting_courses:
+                        existing_course.inProgress = True
+                        existing_course.credits = course["credits"]
+                        existing_course.semester = semester
+                        existing_course.save()
+                else:
+                    # Course is not specified in audit, therefore we manually add it to specified category
+                    if category != "Auto":
+                        category = course["category"]
+                        course["category"] = Category.objects.get(name=category, user=self.context["request"].user)
+                        course["user"] = self.context["request"].user
+                        new_course = Course.objects.create(**course)
+                        new_course.semester = semester
+                        new_course.inProgress = True
+                        new_course.save()
         semester.save()
         return semester
 
