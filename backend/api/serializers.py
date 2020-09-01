@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from .models import Category, Course, Semester, Program
+from .utils import set_courses
 
 # serializer to take in search filters
 class FetchCoursesSerializer(serializers.Serializer):
@@ -48,13 +49,20 @@ class SemesterSerializer(serializers.ModelSerializer):
     def validate(self, data):
         if not data.get("courses"):
             raise serializers.ValidationError("Semester must contain at least one course")
+
+        # Check that a course could be processed as auto
         for course in data["courses"]:
+            if course["code"] == "User-Added" and course["category"] == "Auto":
+                raise serializers.ValidationError("All placeholder courses must specifiy a category")
+
             exisiting_course = Course.objects.filter(user=self.context["request"].user, code=course["code"], semester=None)
-            if course["category"] == "Auto" and not exisiting_course.exists():
-                print(course["code"], course["name"])
-                raise serializers.ValidationError(
-                    "Could not auto generate a category for one or more courses, please double check each courses audit requirement"
-                )
+            if course["category"] == "Auto":
+                if not exisiting_course.exists():
+                    raise serializers.ValidationError(
+                        f"Could not auto generate a category for course {course['code']}, please double check its audit requirement"
+                    )
+
+        # Semester term + year is unique, but by pass if updating
         existing_semester = Semester.objects.filter(user=self.context["request"].user, term=data["term"], year=data["year"])
         if existing_semester.exists():
             if self.instance:
@@ -69,79 +77,22 @@ class SemesterSerializer(serializers.ModelSerializer):
         # Update Term / Year
         instance.term = validated_data["term"]
         instance.year = validated_data["year"]
-        new_courses = validated_data["courses"]
 
+        # Update Courses
         instance.courses.clear()
+        set_courses(validated_data["courses"], instance, self.context["request"].user)
 
-        for course in new_courses:
-            print(course)
-            if course.get("id"):
-                exisitng_course = Course.objects.get(pk=course["id"])
-                exisitng_course.category = Category.objects.get(name=course["category"])
-                exisitng_course.semester = instance
-                exisitng_course.save()
-            else:
-                if course["code"] == "User-Added":
-                    category = course["category"]
-                    course["category"] = Category.objects.get(name=category, user=self.context["request"].user)
-                    course["user"] = self.context["request"].user
-                    new_course = Course.objects.create(**course)
-                    new_course.semester = instance
-                    new_course.inProgress = True
-                    new_course.save()
-                else:
-                    exisiting_courses = Course.objects.filter(code=course["code"], name=course["name"], user=self.context["request"].user)
-                    if exisiting_courses:
-                        # all courses with this code that exist in the audit should be updated
-                        for existing_course in exisiting_courses:
-                            existing_course.inProgress = True
-                            existing_course.credits = course["credits"]
-                            existing_course.semester = instance
-                            existing_course.save()
-                    else:
-                        # Course is not specified in audit, therefore we manually add it to specified category
-                        category = course["category"]
-                        course["category"] = Category.objects.get(name=category, user=self.context["request"].user)
-                        course["user"] = self.context["request"].user
-                        new_course = Course.objects.create(**course)
-                        new_course.semester = instance
-                        new_course.inProgress = True
-                        new_course.save()
         instance.save()
         return instance
 
     def create(self, validated_data):
         courses = validated_data.pop("courses")
+        # Create Semester
         validated_data["user"] = self.context["request"].user
         semester = Semester.objects.create(**validated_data)
-        for course in courses:  # remaining courses to add
-            if course["code"] == "User-Added":
-                category = course["category"]
-                course["category"] = Category.objects.get(name=category, user=self.context["request"].user)
-                course["user"] = self.context["request"].user
-                new_course = Course.objects.create(**course)
-                new_course.semester = semester
-                new_course.inProgress = True
-                new_course.save()
-            else:
-                exisiting_courses = Course.objects.filter(code=course["code"], user=self.context["request"].user)
-                if exisiting_courses:
-                    # all courses with this code that exist in the audit should be updated
-                    for existing_course in exisiting_courses:
-                        existing_course.inProgress = True
-                        existing_course.credits = course["credits"]
-                        existing_course.semester = semester
-                        existing_course.save()
-                else:
-                    # Course is not specified in audit, therefore we manually add it to specified category
-                    category = course["category"]
-                    course["category"] = Category.objects.get(name=category, user=self.context["request"].user)
-                    course["user"] = self.context["request"].user
-                    new_course = Course.objects.create(**course)
-                    new_course.semester = semester
-                    new_course.inProgress = True
-                    new_course.save()
         semester.save()
+        # Add Courses
+        set_courses(courses, semester, self.context["request"].user)
         return semester
 
     class Meta:
@@ -153,3 +104,20 @@ class ProgramSerializer(serializers.ModelSerializer):
     class Meta:
         model = Program
         fields = ("label", "number_of_requirements")
+
+
+def getPrograms(user):
+    programs = user.programs.all()
+    serialized_programs = []
+    for program in programs:
+        program_serialized = dict(ProgramSerializer(program).data)
+        program_serialized["categories"] = []
+        for category in program.categories.all():
+            category_serialized = dict(CategorySerializer(category).data)
+            category_serialized["courses"] = []
+            for course in category.courses.all():
+                course_serialized = CourseSerializer(course)
+                category_serialized["courses"].append(course_serialized.data)
+            program_serialized["categories"].append(category_serialized)
+        serialized_programs.append(program_serialized)
+    return serialized_programs

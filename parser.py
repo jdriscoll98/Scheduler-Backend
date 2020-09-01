@@ -21,7 +21,6 @@ for group in majorGroup[3:]:
         for requirement in requirements:
             subRequirements = requirement.get("subRequirements")
             if subRequirements:
-                print(requirement["title"])
                 category = {}
                 category["name"] = requirement["title"]
                 category["courses"] = []
@@ -61,4 +60,3 @@ for group in majorGroup[3:]:
                         category["percent_complete"] = min((category["completed"] / len(category["courses"])) * 100, 100)
                     program["categories"].append(category)
 
-print(program)
