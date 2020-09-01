@@ -97,6 +97,7 @@ class UpdateSemesters(RetrieveUpdateDestroyAPIView):
             else:
                 course.inProgress = False
                 course.credits = 0
+            course.save()
         instance.delete()
         data = {"programs": getPrograms(request.user)}
         return Response(data=data, status=status.HTTP_200_OK)

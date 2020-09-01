@@ -1,4 +1,4 @@
-from .models import Program, Category, Course
+from .models import Program, Category, Course, Semester
 from django.shortcuts import get_object_or_404
 import re
 from .serializers import ProgramSerializer, CategorySerializer, CourseSerializer
@@ -6,6 +6,8 @@ from .serializers import ProgramSerializer, CategorySerializer, CourseSerializer
 
 def parse_audit(data, user):
     programs = []
+    courses_taken = data["careers"][0]["coursesTaken"]
+
     for program_group in data["careers"][0]["planGroups"]:
 
         program = Program.objects.create(user=user, label=program_group[0]["title"], number_of_requirements=len(program_group[0]["requirements"]))
@@ -53,6 +55,27 @@ def parse_audit(data, user):
                         if len(category.courses.all()) <= 0:
                             category.delete()
         programs.append(program)
+
+    previous_courses = Category.objects.create(name="Previous Courses", description="Uploaded from degree audit", program=programs[1], user=user)
+    semester_number = 1
+    for course in courses_taken:
+
+        term = course["termDescription"].split()[0]
+        year = course["termDescription"].split()[1]
+
+        semester, created = Semester.objects.get_or_create(term=term, year=year, user=user, defaults={"number": semester_number})
+        if created:
+            semester_number += 1
+
+        course = Course.objects.create(
+            code=f"{course['subject']}{course['catalogNumber']}",
+            credits=float(course["credit"]),
+            name=course["courseName"],
+            category=previous_courses,
+            semester=semester,
+            user=user,
+        )
+        course.save()
     return programs
 
 
