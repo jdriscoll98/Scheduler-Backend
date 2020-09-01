@@ -10,6 +10,7 @@ class FetchCoursesSerializer(serializers.Serializer):
     course_number = serializers.CharField(max_length=200, required=False, allow_blank=True)
     class_number = serializers.CharField(max_length=200, required=False, allow_blank=True)
     course_title = serializers.CharField(max_length=200, required=False, allow_blank=True)
+    term_code = serializers.CharField(max_length=200)
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -48,7 +49,7 @@ class SemesterSerializer(serializers.ModelSerializer):
         if not data.get("courses"):
             raise serializers.ValidationError("Semester must contain at least one course")
         for course in data["courses"]:
-            exisiting_course = Course.objects.filter(user=self.context["request"].user, code=course["code"], name=course["name"], semester=None)
+            exisiting_course = Course.objects.filter(user=self.context["request"].user, code=course["code"], semester=None)
             if course["category"] == "Auto" and not exisiting_course.exists():
                 print(course["code"], course["name"])
                 raise serializers.ValidationError(
@@ -123,7 +124,7 @@ class SemesterSerializer(serializers.ModelSerializer):
                 new_course.inProgress = True
                 new_course.save()
             else:
-                exisiting_courses = Course.objects.filter(code=course["code"], name=course["name"], user=self.context["request"].user)
+                exisiting_courses = Course.objects.filter(code=course["code"], user=self.context["request"].user)
                 if exisiting_courses:
                     # all courses with this code that exist in the audit should be updated
                     for existing_course in exisiting_courses:
@@ -133,14 +134,13 @@ class SemesterSerializer(serializers.ModelSerializer):
                         existing_course.save()
                 else:
                     # Course is not specified in audit, therefore we manually add it to specified category
-                    if category != "Auto":
-                        category = course["category"]
-                        course["category"] = Category.objects.get(name=category, user=self.context["request"].user)
-                        course["user"] = self.context["request"].user
-                        new_course = Course.objects.create(**course)
-                        new_course.semester = semester
-                        new_course.inProgress = True
-                        new_course.save()
+                    category = course["category"]
+                    course["category"] = Category.objects.get(name=category, user=self.context["request"].user)
+                    course["user"] = self.context["request"].user
+                    new_course = Course.objects.create(**course)
+                    new_course.semester = semester
+                    new_course.inProgress = True
+                    new_course.save()
         semester.save()
         return semester
 

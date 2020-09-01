@@ -30,9 +30,11 @@ class FetchCourses(APIView):
             level = data.get("level", "")
             department = data.get("department", "")
             course_title = data.get("course_title", "")
+            term_code = data["term_code"]
+            print(term_code)
             if course_title:
                 course_title.replace(" ", "+")
-            url = f"https://one.uf.edu/apix/soc/schedule/?category=CWSP&class-num={class_number}&course-code={course_number}&course-title={course_title}&cred-srch=&credits=&day-f=&day-m=&day-r=&day-s=&day-t=&day-w=&days=false&dept={department}&eep=&fitsSchedule=false&ge=&ge-b=&ge-c=&ge-d=&ge-h=&ge-m=&ge-n=&ge-p=&ge-s=&hons=false&instructor=&last-control-number=0&level-max=--&level-min=--&no-open-seats=false&online-a=&online-c=&online-h=&online-p=&period-b=&period-e=&prog-level={level}&term=2208&wr-2000=&wr-4000=&wr-6000=&writing="
+            url = f"https://one.uf.edu/apix/soc/schedule/?category=CWSP&class-num={class_number}&course-code={course_number}&course-title={course_title}&cred-srch=&credits=&day-f=&day-m=&day-r=&day-s=&day-t=&day-w=&days=false&dept={department}&eep=&fitsSchedule=false&ge=&ge-b=&ge-c=&ge-d=&ge-h=&ge-m=&ge-n=&ge-p=&ge-s=&hons=false&instructor=&last-control-number=0&level-max=--&level-min=--&no-open-seats=false&online-a=&online-c=&online-h=&online-p=&period-b=&period-e=&prog-level={level}&term={term_code}&wr-2000=&wr-4000=&wr-6000=&writing="
             response = requests.get(url)
             courses = json.loads(response.content)[0]["COURSES"]
             response_data = {}
