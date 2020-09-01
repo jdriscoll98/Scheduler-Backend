@@ -18,7 +18,7 @@ from .serializers import (
     CourseSerializer,
     getPrograms,
 )
-from .utils import parse_audit
+from .utils import parse_audit, reset_courses
 from .models import Category, Program, Semester
 import requests
 import json
@@ -45,16 +45,16 @@ class FetchCourses(APIView):
             response = requests.get(url)
             courses = json.loads(response.content)[0]["COURSES"]
             response_data = {}
-            response_data["parsed_courses"] = []
-            for course in courses:
-                parsed_course = {
+            response_data["parsed_courses"] = [
+                {
                     "code": course["code"],
                     "name": course["name"],
                     "description": course["description"],
                     "credits": course["sections"][0]["credits"],
                     "courseID": course["courseId"],
                 }
-                response_data["parsed_courses"].append(parsed_course)
+                for course in courses
+            ]
             return Response(data=response_data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -99,13 +99,7 @@ class UpdateSemesters(RetrieveUpdateDestroyAPIView):
 
     def delete(self, request, *args, **kwargs):
         instance = self.get_object()
-        for course in instance.courses.all():
-            if course.description == "User Added Course":
-                course.delete()
-            else:
-                course.inProgress = False
-                course.credits = 0
-            course.save()
+        reset_courses(instance)
         instance.delete()
         data = {"programs": getPrograms(request.user)}
         return Response(data=data, status=status.HTTP_200_OK)
@@ -119,8 +113,8 @@ class ProcessAuditView(APIView):
 
     def post(self, request, format=None):
         data = json.loads(request.data)
-        parsed_audit = parse_audit(data, request.user)
-        return Response(status.HTTP_200_OK)
+        parse_audit(data, request.user)
+        return Response(status.HTTP_201_CREATED)
 
 
 class Authenticate(ObtainAuthToken):

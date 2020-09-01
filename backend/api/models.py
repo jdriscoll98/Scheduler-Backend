@@ -1,10 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from uuid import uuid4
-
-# Create your models here.
-
-TYPES = [("Major", "Major"), ("Minor", "Minor")]
 
 
 class Program(models.Model):

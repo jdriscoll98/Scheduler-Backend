@@ -11,7 +11,6 @@ def parse_audit(data, user):
     programs = generatePrograms(data["careers"][0]["planGroups"], user)
     courses_taken = data["careers"][0]["coursesTaken"]
     load_prev_courses(courses_taken, programs[1], user)
-    return programs
 
 
 def clear_prev_audit(user):
@@ -148,3 +147,13 @@ def process_course(course, instance, user):
         new_course.semester = instance
         new_course.inProgress = True
         new_course.save()
+
+
+def reset_courses(semester):
+    for course in instance.courses.all():
+        if course.description == "User Added Course":
+            course.delete()
+        else:
+            course.inProgress = False
+            course.credits = 0
+        course.save()
