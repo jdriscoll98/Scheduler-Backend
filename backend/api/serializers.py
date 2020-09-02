@@ -2,7 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from .models import Category, Course, Semester, Program
-from .utils import set_courses
+from .utils import set_courses, reset_courses
 
 # serializer to take in search filters
 class FetchCoursesSerializer(serializers.Serializer):
@@ -74,11 +74,13 @@ class SemesterSerializer(serializers.ModelSerializer):
         return super(SemesterSerializer, self).validate(data)
 
     def update(self, instance, validated_data):
-        # Update Term / Year
+        # Update Term / Year / Notes
         instance.term = validated_data["term"]
         instance.year = validated_data["year"]
+        instance.notes = validated_data["notes"]
 
         # Update Courses
+        reset_courses(instance)
         instance.courses.clear()
         set_courses(validated_data["courses"], instance, self.context["request"].user)
 

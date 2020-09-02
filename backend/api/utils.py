@@ -104,13 +104,13 @@ def load_prev_courses(courses_taken, program, user):
 def set_courses(new_courses, instance, user):
 
     for course in new_courses:
-        if course.get("id"):
-            update_existing_course(course, instance)
+        # if course.get("id"):
+        #     update_existing_course(course, instance)
+        # else:
+        if course["code"] == "User-Added":
+            create_user_added_course(course, instance, user)
         else:
-            if course["code"] == "User-Added":
-                create_user_added_course(course, instance, user)
-            else:
-                process_course(course, instance, user)
+            process_course(course, instance, user)
 
 
 def update_existing_course(course, instance):
@@ -150,7 +150,7 @@ def process_course(course, instance, user):
 
 
 def reset_courses(semester):
-    for course in instance.courses.all():
+    for course in semester.courses.all():
         if course.description == "User Added Course":
             course.delete()
         else:
