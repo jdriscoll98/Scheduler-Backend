@@ -81,23 +81,23 @@ def load_prev_courses(courses_taken, program, user):
     previous_courses = Category.objects.create(name="Previous Courses", description="Uploaded from degree audit", program=program, user=user)
     semester_number = 1
     for course in courses_taken:
+        if course["grade"] != "W":
+            term = course["termDescription"].split()[0]
+            year = course["termDescription"].split()[1]
 
-        term = course["termDescription"].split()[0]
-        year = course["termDescription"].split()[1]
+            semester, created = Semester.objects.get_or_create(term=term, year=year, user=user, defaults={"number": semester_number})
+            if created:
+                semester_number += 1
 
-        semester, created = Semester.objects.get_or_create(term=term, year=year, user=user, defaults={"number": semester_number})
-        if created:
-            semester_number += 1
-
-        course = Course.objects.create(
-            code=f"{course['subject']}{course['catalogNumber']}",
-            credits=float(course["credit"]),
-            name=course["courseName"],
-            category=previous_courses,
-            semester=semester,
-            user=user,
-            passed=True,
-        )
+            course = Course.objects.create(
+                code=f"{course['subject']}{course['catalogNumber']}",
+                credits=float(course["credit"]),
+                name=course["courseName"],
+                category=previous_courses,
+                semester=semester,
+                user=user,
+                passed=True,
+            )
 
 
 ########## Serializer Utils

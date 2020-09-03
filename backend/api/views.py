@@ -114,7 +114,10 @@ class ProcessAuditView(APIView):
     def post(self, request, format=None):
         data = json.loads(request.data)
         parse_audit(data, request.user)
-        return Response(status.HTTP_201_CREATED)
+        semesters = Semester.objects.filter(user=request.user)
+        serializer = SemesterSerializer(semesters, many=True)
+        response_data = {"programs": getPrograms(request.user), "semesters": serializer.data}
+        return Response(data=response_data, status=status.HTTP_201_CREATED)
 
 
 class Authenticate(ObtainAuthToken):
